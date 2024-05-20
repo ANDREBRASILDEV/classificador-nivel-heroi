@@ -26,7 +26,7 @@ console.log(nome1);
 console.log("Nome jogador: "+ nomeJogador1);
 
 
-let niveis = z{};
+let niveis = {};
 const lsNiveis = [];
 
 /** Funcao CriarNiveis responsavel por criar os niveis do jogo
