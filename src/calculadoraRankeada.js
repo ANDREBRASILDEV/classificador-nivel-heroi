@@ -1,33 +1,29 @@
 
-//const message = 'Hello world' // Try edit me
-// Update header text
-//let nomeJogador1 = document.getElementById('nomeJogador');
-// Log to console
-//console.log(nomeJogador1.value)
-
+/** Variaveis globais */
 var form = document.getElementById('formulario');
-let nomeJogador1 = document.getElementById('nomeJogador');
-
-let nome1 = "";
-
 let qtdeXp = 0;
 let nomeJogador = "";
+let niveis = {};
+let nivelEncontrado = "";
+const lsNiveis = [];
 
+/** Modulo que pega o evento no botao ENVIAR do formulario
+ *  1. carrega os modulos para apresentar a msg
+ *  2. não há tratamento nos campos ainda
+ *  3. 
+ */
 form.addEventListener("submit", function(event) {    
 
     nomeJogador = document.getElementById("nomeJogador").value;
     qtdeXp = parseInt(document.getElementById("hpJogador").value);
-    console.log("Nome jogador: " +nomeJogador+" xp: "+qtdeXp);
+    //console.log("Nome jogador: " +nomeJogador+" xp: "+qtdeXp);
+
+    onloadGame();
 
     event.preventDefault();
-   // Faça algo com os valores obtidos
+
   });
-console.log(nome1);
-console.log("Nome jogador: "+ nomeJogador1);
 
-
-let niveis = {};
-const lsNiveis = [];
 
 /** Funcao CriarNiveis responsavel por criar os niveis do jogo
  * @param {*} nome : nomenclatura do nivel a ser criado
@@ -64,29 +60,39 @@ function buscarNivelRankeada(sldRank){
      return achou;
 }
 
-//Alimentando os niveis do jogo
-lsNiveis.push(criarNiveis("Ferro", -100000, 1000));
-lsNiveis.push(criarNiveis("Bronze", 1001, 2000));
-lsNiveis.push(criarNiveis("Prata", 2001, 5000));
-lsNiveis.push(criarNiveis("Ouro", 5001, 7000));
-lsNiveis.push(criarNiveis("Platina", 7001 , 8000));
-lsNiveis.push(criarNiveis("Ascendente", 8001 , 9000));
-lsNiveis.push(criarNiveis("Imortal", 9001 , 10000));
-lsNiveis.push(criarNiveis("Radiante", 10001  , 100000));
+function redirecionarPageResultado(){
+    //window.location.assign("http://pt.stackoverflow.com");
+    //window.location.assign("resultado.html");
+    newPopup();
+}
 
 
-//receber dados do sistema ou usuario
-//let qtdeVitorias = 115;
-//let qtdeDerrotas = 30;
-//let saldoRankeada = calcSaldoRankeada(qtdeVitorias,qtdeDerrotas);
+function onloadGame(){
+    //Alimentando os niveis do jogo
+    lsNiveis.push(criarNiveis("Ferro", -100000, 1000));
+    lsNiveis.push(criarNiveis("Bronze", 1001, 2000));
+    lsNiveis.push(criarNiveis("Prata", 2001, 5000));
+    lsNiveis.push(criarNiveis("Ouro", 5001, 7000));
+    lsNiveis.push(criarNiveis("Platina", 7001 , 8000));
+    lsNiveis.push(criarNiveis("Ascendente", 8001 , 9000));
+    lsNiveis.push(criarNiveis("Imortal", 9001 , 10000));
+    lsNiveis.push(criarNiveis("Radiante", 10001  , 100000));
 
+    nivelEncontrado = buscarNivelRankeada(qtdeXp);
+    //console.log("Nivel encontrado: "+nivelEncontrado);
 
-//let qtdeXp = 11000;
-//let nomeJogador = "André Dev";
+    //Exibir mensagem final obs: usar console ou confirm
+    exibriMsgFinal(qtdeXp, nivelEncontrado, nomeJogador);
+    redirecionarPageResultado();
 
-let nivelEncontrado = buscarNivelRankeada(qtdeXp);
-console.log("Nivel encontrado: "+nivelEncontrado);
+}
 
-//Exibir mensagem final obs: usar console ou confirm
-exibriMsgFinal(qtdeXp, nivelEncontrado, nomeJogador);
-
+function newPopup(){
+    
+    varWindow = window.open (
+        "resultado.html?nomeJogador="+nomeJogador+"&nivelEncontrado="+nivelEncontrado, 
+        'popup',
+        "width=500, height=500, top=100, left=110, scrollbars=no",
+        
+    )
+    }

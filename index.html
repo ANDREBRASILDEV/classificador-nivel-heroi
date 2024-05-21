@@ -6,19 +6,23 @@
     <link rel="stylesheet" href="src/style.css">
   </head>
   <body>
-    <h1 id="header"></h1>
+    <form id="formulario" action="" method="post">
+        <div>
+          <h1>Informe os Dados</h1>               
+          <div class="barra-horizontal"></div>
+        </div>
 
-    <form id="formulario">
-        <label>Nome Jogador</label>
-        <br> <!-- Quebra de linha -->
-        <input id="nomeJogador" type="text">
-        <br> <!-- Quebra de linha -->
+        <div class="campo-input">
+          <label>Nome Jogador</label>          
+          <input id="nomeJogador" type="text">          
+        </div>
         
-        <label>Digite seu XP</label>
-        <br> <!-- Quebra de linha -->
-        <input id="hpJogador" type="text">
+        <div class="campo-input">
+          <label>Digite seu XP</label>         
+          <input id="hpJogador" type="text">
+        </div>
 
-        <br> <!-- Quebra de linha -->
+      
         <button type="submit">Enviar</button>
     </form>
 

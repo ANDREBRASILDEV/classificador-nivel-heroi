@@ -1,0 +1,21 @@
+
+.titulo{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+.barra-horizontal {
+    background-color: #f87842;
+    height: 6px;
+    width: 280px;
+}
+
+.principal{
+    background-color: rgb(248, 234, 228);
+    padding: 50px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;        
+}
