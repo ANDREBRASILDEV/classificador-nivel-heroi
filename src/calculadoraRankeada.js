@@ -17,10 +17,17 @@ form.addEventListener("submit", function(event) {
     nomeJogador = document.getElementById("nomeJogador").value;
     qtdeXp = parseInt(document.getElementById("hpJogador").value);
     //console.log("Nome jogador: " +nomeJogador+" xp: "+qtdeXp);
-
-    onloadGame();
+    if (validar()){
+        onloadGame();    
+    }else{
+        alert("Campo vazio");    
+        event.preventDefault();
+        return (false);          
+    }
+    
 
     event.preventDefault();
+    
 
   });
 
@@ -87,12 +94,20 @@ function onloadGame(){
 
 }
 
-function newPopup(){
-    
+function newPopup(){    
     varWindow = window.open (
         "resultado.html?nomeJogador="+nomeJogador+"&nivelEncontrado="+nivelEncontrado, 
         'popup',
-        "width=500, height=500, top=100, left=110, scrollbars=no",
-        
+        "width=500, height=500, top=100, left=110, scrollbars=no",        
     )
+}
+
+function validar(){
+    var campoUsuario = document.getElementById("nomeJogador").value;
+    if(campoUsuario ==""){
+        alert("O campo usuário esta vazio!");
+        return(false);
+    }else{
+        return(true);
     }
+}
