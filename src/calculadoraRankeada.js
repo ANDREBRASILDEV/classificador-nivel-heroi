@@ -7,10 +7,9 @@ let niveis = {};
 let nivelEncontrado = "";
 const lsNiveis = [];
 
-/** Modulo que pega o evento no botao ENVIAR do formulario
- *  1. carrega os modulos para apresentar a msg
- *  2. não há tratamento nos campos ainda
- *  3. 
+/** Modulo que pega o evento no botao ENVIAR do formulario (submit)
+ *  1. carrega os modulos para apresentar a msg *  
+ *  
  */
 form.addEventListener("submit", function(event) {    
 
@@ -23,12 +22,9 @@ form.addEventListener("submit", function(event) {
         alert("Campo vazio");    
         event.preventDefault();
         return (false);          
-    }
-    
+    }    
 
     event.preventDefault();
-    
-
   });
 
 
@@ -73,7 +69,11 @@ function redirecionarPageResultado(){
     newPopup();
 }
 
-
+/** Funcao que alimenta a "base de dados" para condicionar o jogador confomr xp/nivel numa lista
+ *  @event 1 O metodo: criarNiveis é chamado para alimentar a base de dados
+ * 
+ * @see criarNiveis()
+ */
 function onloadGame(){
     //Alimentando os niveis do jogo
     lsNiveis.push(criarNiveis("Ferro", -100000, 1000));
@@ -85,13 +85,12 @@ function onloadGame(){
     lsNiveis.push(criarNiveis("Imortal", 9001 , 10000));
     lsNiveis.push(criarNiveis("Radiante", 10001  , 100000));
 
-    nivelEncontrado = buscarNivelRankeada(qtdeXp);
-    //console.log("Nivel encontrado: "+nivelEncontrado);
+    nivelEncontrado = buscarNivelRankeada(qtdeXp);    
 
-    //Exibir mensagem final obs: usar console ou confirm
+    //Exibir mensagem final obs: versao 1.0 usando alert ou confirm 
+    // versao 1.2 -usando uma nova pagina para apresentação do resultado
     exibriMsgFinal(qtdeXp, nivelEncontrado, nomeJogador);
     redirecionarPageResultado();
-
 }
 
 function newPopup(){    
